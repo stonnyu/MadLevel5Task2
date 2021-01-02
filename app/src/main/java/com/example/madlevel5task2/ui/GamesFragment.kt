@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madlevel5task1.model.Game
 import com.example.madlevel5task1.model.GameViewModel
+import com.example.madlevel5task1.repository.GameRepository
 import com.example.madlevel5task2.R
 import kotlinx.android.synthetic.main.fragment_games.*
 import kotlinx.android.synthetic.main.item_game.*
@@ -34,6 +35,7 @@ class GamesFragment : Fragment() {
     private val viewModel: GameViewModel by viewModels()
     private val games = arrayListOf<Game>()
     private val gameAdapter = GameAdapter(games)
+    private lateinit var gameRepository: GameRepository
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +47,7 @@ class GamesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        gameRepository = GameRepository(requireContext())
         initRv()
 
         fabAdd.setOnClickListener {
@@ -107,11 +110,11 @@ class GamesFragment : Fragment() {
             // Callback triggered when a user swiped an item.
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
-                val reminderToDelete = games[position]
+                val gameToDelete = games[position]
 
                 CoroutineScope(Dispatchers.Main).launch {
                     withContext(Dispatchers.IO) {
-
+                        gameRepository.deleteGame(gameToDelete)
                     }
                 }
             }
