@@ -27,4 +27,8 @@ class GameRepository(context: Context) {
         gameDao.deleteGame(game)
     }
 
+    suspend fun deleteAllGames() {
+        gameDao.deleteAllGames()
+    }
+
 }

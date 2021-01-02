@@ -13,7 +13,16 @@ import java.util.*
 class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     private val gameRepository =  GameRepository(application.applicationContext)
+    private val mainScope = CoroutineScope(Dispatchers.Main)
 
     val game = gameRepository.getBacklog()
+
+    fun deleteAllGames() {
+        mainScope.launch {
+            withContext(Dispatchers.IO) {
+                gameRepository.deleteAllGames()
+            }
+        }
+    }
 
 }

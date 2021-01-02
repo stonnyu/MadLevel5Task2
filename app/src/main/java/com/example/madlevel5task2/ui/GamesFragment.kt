@@ -1,16 +1,14 @@
 package com.example.madlevel5task2.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.Transformations
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -21,7 +19,6 @@ import com.example.madlevel5task1.model.GameViewModel
 import com.example.madlevel5task1.repository.GameRepository
 import com.example.madlevel5task2.R
 import kotlinx.android.synthetic.main.fragment_games.*
-import kotlinx.android.synthetic.main.item_game.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -77,16 +74,6 @@ class GamesFragment : Fragment() {
                 this@GamesFragment.gameAdapter.notifyDataSetChanged()
             }
         })
-    }
-
-    fun onDeleteSelection(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     /**

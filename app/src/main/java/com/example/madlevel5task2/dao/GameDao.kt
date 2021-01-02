@@ -13,6 +13,9 @@ interface GameDao {
     @Query("SELECT * FROM gameTable")
     fun getBacklog(): LiveData<List<Game?>>
 
+    @Query("DELETE FROM gameTable")
+    suspend fun deleteAllGames()
+
     @Update
     suspend fun updateGame(game: Game)
 
