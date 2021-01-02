@@ -13,39 +13,7 @@ import java.util.*
 class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     private val gameRepository =  GameRepository(application.applicationContext)
-    private val mainScope = CoroutineScope(Dispatchers.Main)
 
     val game = gameRepository.getBacklog()
-    val error = MutableLiveData<String>()
-    val success = MutableLiveData<Boolean>()
 
-    fun updateGame(title: String, platform: String, date: Date) {
-
-        //if there is an existing game, take that id to update it instead of adding a new one
-        val newGame = Game(
-            id = game.value?.id,
-            title = title,
-            platform = platform,
-            date = date
-        )
-
-        if(isGameValid(newGame)) {
-            mainScope.launch {
-                withContext(Dispatchers.IO) {
-                    gameRepository.updateBacklog(newGame)
-                }
-                success.value = true
-            }
-        }
-    }
-
-    private fun isGameValid(game: Game): Boolean {
-        return when {
-            game.title.isBlank() -> {
-                error.value = "Title must not be empty"
-                false
-            }
-            else -> true
-        }
-    }
 }
