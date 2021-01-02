@@ -23,4 +23,8 @@ class GameRepository(context: Context) {
         gameDao.updateGame(game)
     }
 
+    suspend fun insertGame(game: Game) {
+        gameDao.insertGame(game)
+    }
+
 }

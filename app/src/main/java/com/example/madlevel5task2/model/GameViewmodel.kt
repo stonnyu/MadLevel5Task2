@@ -19,14 +19,14 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     val error = MutableLiveData<String>()
     val success = MutableLiveData<Boolean>()
 
-    fun updateGame(title: String, platform: String) {
+    fun updateGame(title: String, platform: String, date: Date) {
 
         //if there is an existing game, take that id to update it instead of adding a new one
         val newGame = Game(
             id = game.value?.id,
             title = title,
-            date = Date(),
-            platform = platform
+            platform = platform,
+            date = date
         )
 
         if(isGameValid(newGame)) {
