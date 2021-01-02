@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.madlevel5task1.model.Game
-import com.example.madlevel5task1.model.GameViewModel
 import com.example.madlevel5task1.repository.GameRepository
 import com.example.madlevel5task2.R
 import kotlinx.android.synthetic.main.fragment_add_game.*
@@ -17,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -46,13 +45,19 @@ class AddGamesFragment : Fragment() {
 
     }
 
-    private fun saveGame() {
-        val format = SimpleDateFormat("ddMMyyyy")
+    private fun dateInputFormat(): Date {
+        val dateString: String = tilAddDateDay.editText?.text.toString() +
+        tilAddDateMonth.editText?.text.toString() +
+        tilAddDateYear.editText?.text.toString()
 
+        return SimpleDateFormat("dMyyyy").parse(dateString)
+    }
+
+    private fun saveGame() {
         val game = Game(
                 title = tilAddTitle.editText?.text.toString(),
                 platform = tilAddPlatform.editText?.text.toString(),
-                date = format.parse(tilAddDate.editText?.text.toString())
+                date = dateInputFormat()
         )
         mainScope.launch {
             withContext(Dispatchers.IO) {

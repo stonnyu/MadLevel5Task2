@@ -9,4 +9,9 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="hint_day">Day</string>
+    <string name="hint_month">Month</string>
+    <string name="hint_year">Year</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_platform">Platform</string>
 </resources>

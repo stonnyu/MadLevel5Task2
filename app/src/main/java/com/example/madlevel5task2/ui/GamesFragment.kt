@@ -111,7 +111,7 @@ class GamesFragment : Fragment() {
 
                 CoroutineScope(Dispatchers.Main).launch {
                     withContext(Dispatchers.IO) {
-                        
+
                     }
                 }
             }
