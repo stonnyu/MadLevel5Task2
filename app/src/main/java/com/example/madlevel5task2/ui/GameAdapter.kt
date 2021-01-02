@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.madlevel5task2.R
 import com.example.madlevel5task1.model.Game
+import com.example.madlevel5task2.R
 import kotlinx.android.synthetic.main.item_game.view.*
 import java.text.SimpleDateFormat
 
